@@ -16,10 +16,11 @@ class View(ui.View):
   def __init__(self, data=None, *args, **kwargs):
     self.bg_color = 1
     self.img = qrcode.make(data)
-    self.iv = ui.ImageView()
-    self.iv.image = img2ui_img(self.img)
+    self.img_view = ui.ImageView()
+    self.img_view.image = img2ui_img(self.img)
+    self.img_view.size_to_fit()
     #self.iv.image = ui.Image.from_data(img)
-    self.add_subview(self.iv)
+    self.add_subview(self.img_view)
 
 
 if __name__ == '__main__':
