@@ -19,8 +19,20 @@ class View(ui.View):
     self.img_view = ui.ImageView()
     self.img_view.image = img2ui_img(self.img)
     self.img_view.size_to_fit()
-    #self.iv.image = ui.Image.from_data(img)
+
+    self.tf = ui.TextField()
+    self.tf.bg_color = 'red'
+
+    self.btn = ui.Button()
+    btn_icon = ui.Image.named('iob:ios7_refresh_outline_256')
+    self.btn.background_image = btn_icon
+
+    self.add_subview(self.tf)
+    self.add_subview(self.btn)
     self.add_subview(self.img_view)
+
+  def layout(self):
+    pass
 
 
 if __name__ == '__main__':
