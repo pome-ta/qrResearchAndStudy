@@ -20,7 +20,10 @@ class InPutViews(ui.View):
   def __init__(self, parent, *args, **kwargs):
     self.parent = parent
     self.bg_color = 'green'
+    
     self.text_field = ui.TextField()
+    self.text_field.flex = 'WH'
+    
     self.btn = create_btn('iob:ios7_refresh_outline_256')
     
     
