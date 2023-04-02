@@ -21,6 +21,10 @@ class InPutViews(ui.View):
     self.parent = parent
     self.bg_color = 'green'
     self.text_field = ui.TextField()
+    self.btn = create_btn('iob:ios7_refresh_outline_256')
+    
+    
+    self.add_subview(self.btn)
     self.add_subview(self.text_field)
     
   def layout(self):
