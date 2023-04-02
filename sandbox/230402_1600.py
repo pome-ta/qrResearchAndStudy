@@ -11,6 +11,21 @@ def img2ui_img(img_p: ImageP):
     img_p.save(bIO, kind)
     return ui.Image.from_data(bIO.getvalue())
 
+def create_btn(icon):
+  btn_icon = ui.Image.named(icon)
+  btn = ui.Button(image=btn_icon)
+  return btn
+
+class InPutViews(ui.View):
+  def __init__(self, parent, *args, **kwargs):
+    self.parent = parent
+    self.bg_color = 'green'
+    self.text_field = ui.TextField()
+    self.add_subview(self.text_field)
+    
+  def layout(self):
+    print(self.parent.frame)
+
 
 class View(ui.View):
   def __init__(self, data=None, *args, **kwargs):
@@ -20,16 +35,11 @@ class View(ui.View):
     self.img_view.image = img2ui_img(self.img)
     self.img_view.size_to_fit()
 
-    self.tf = ui.TextField()
-    self.tf.text = data
-    self.tf.bg_color = 'red'
+    self.input_view = InPutViews(self)
+    self.add_subview(self.input_view)
 
-    self.btn = self.create_btn('iob:ios7_refresh_outline_256')
-    self.btn.flex = 'WH'
-
-    self.add_subview(self.tf)
-    self.add_subview(self.btn)
-    self.add_subview(self.img_view)
+    
+    #self.add_subview(self.img_view)
 
   def layout(self):
     pass
