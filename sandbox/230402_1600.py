@@ -21,6 +21,7 @@ class View(ui.View):
     self.img_view.size_to_fit()
 
     self.tf = ui.TextField()
+    self.tf.text = data
     self.tf.bg_color = 'red'
 
     self.btn = self.create_btn('iob:ios7_refresh_outline_256')
