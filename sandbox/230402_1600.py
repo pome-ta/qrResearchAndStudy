@@ -23,9 +23,8 @@ class View(ui.View):
     self.tf = ui.TextField()
     self.tf.bg_color = 'red'
 
-    self.btn = ui.Button()
-    btn_icon = ui.Image.named('iob:ios7_refresh_outline_256')
-    self.btn.background_image = btn_icon
+    self.btn = self.create_btn('iob:ios7_refresh_outline_256')
+    self.btn.flex = 'WH'
 
     self.add_subview(self.tf)
     self.add_subview(self.btn)
@@ -33,6 +32,11 @@ class View(ui.View):
 
   def layout(self):
     pass
+
+  def create_btn(self, icon):
+    btn_icon = ui.Image.named(icon)
+    btn = ui.Button(image=btn_icon)
+    return btn
 
 
 if __name__ == '__main__':
