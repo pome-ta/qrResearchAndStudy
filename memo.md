@@ -1,3 +1,17 @@
+# 📝 2023/04/04
+
+## `qrcode` -> `pystaQrcode` を読んでいく
+
+無駄にインデントを2 に変えていく
+
+
+### `maim.py` を読む
+
+[qrResearchAndStudy/main.py at main · pome-ta/qrResearchAndStudy · GitHub](https://github.com/pome-ta/qrResearchAndStudy/blob/main/sandbox/pystaQrcode/main.py)
+
+
+
+
 # 📝 2023/04/03
 
 [/qrcode](https://github.com/pome-ta/qrResearchAndStudy/tree/main/qrcode) 
