@@ -2,6 +2,11 @@
 
 [/qrcode](https://github.com/pome-ta/qrResearchAndStudy/tree/main/qrcode) 
 
+↓
+
+[/sandbox/pystaQrcode](https://github.com/pome-ta/qrResearchAndStudy/tree/main/sandbox/pystaQrcode) rename
+
+
 Pythonista3 よりコピー
 
 
