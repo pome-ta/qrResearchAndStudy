@@ -318,10 +318,12 @@ def optimal_data_chunks(data, minimum=4):
 
   num_bits = _optimal_split(data, num_pattern)
   #print(f'optimal_data_chunks num_bits: {num_bits}\n')
+
   alpha_pattern = re.compile(
     six.b('[') + re.escape(ALPHA_NUM) + six.b(']') + re_repeat)
   for is_num, chunk in num_bits:
     #print(f'is_num: {is_num}\n')  # False
+    #print(f'chunk: {chunk}\n')  # b data
     if is_num:
       yield QRData(chunk, mode=MODE_NUMBER, check_data=False)
     else:
@@ -337,7 +339,7 @@ def optimal_data_chunks(data, minimum=4):
 
 def _optimal_split(data, pattern):
   #print('_optimal_split')
-  #print(f'data: {data}\n')
+  #print(f'data: {data}')
   #print(f'pattern: {pattern}\n')
   while data:
     #print(f'while.data: {data}\n')
@@ -391,13 +393,14 @@ class QRData:
     chosen.
     `mode` が与えられない場合、可能な限りコンパクトなQRデータ型が選択される。
     """
-    if check_data:
+
+    if check_data:  # False
       data = to_bytestring(data)
 
     if mode is None:
       self.mode = optimal_mode(data)
     else:
-      self.mode = mode
+      self.mode = mode  # 4
       if mode not in (MODE_NUMBER, MODE_ALPHA_NUM, MODE_8BIT_BYTE):
         raise TypeError("Invalid mode (%s)" % mode)  # pragma: no cover
       if check_data and mode < optimal_mode(data):  # pragma: no cover

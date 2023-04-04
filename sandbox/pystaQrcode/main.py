@@ -10,12 +10,14 @@ from bisect import bisect_left
 
 
 def make(data=None, **kwargs):
+  print('out main.make')
   qr = QRCode(**kwargs)
   qr.add_data(data)
   return qr.make_image()
 
 
 def _check_version(version):
+  print('main._check_version')
   if version < 1 or version > 40:
     raise ValueError("Invalid version (was %s, expected 1 to 40)" % version)
 
@@ -27,13 +29,15 @@ class QRCode:
                box_size=10,
                border=4,
                image_factory=None):
+    print('main.QRCode.__init__')
+
     self.version = version and int(version)  # None
     self.error_correction = int(error_correction)
     self.box_size = int(box_size)
     # Spec says border should be at least four boxes wide, but allow for
     # any (e.g. for producing printable QR codes).
     # 仕様では、borderは少なくとも4ボックス幅であるべきだが、任意の幅を許容する（例えば、印刷可能なQRコードを作成する場合）。
-    
+
     self.border = int(border)
     self.image_factory = image_factory
     if image_factory is not None:
@@ -41,6 +45,7 @@ class QRCode:
     self.clear()
 
   def clear(self):
+    print('main.QRCode.clear')
     """
     Reset the internal data.
     """
@@ -50,6 +55,7 @@ class QRCode:
     self.data_list = []
 
   def add_data(self, data, optimize=20):
+    print('main.QRCode.add_data')
     """
     Add data to this QR Code.
 
@@ -59,7 +65,7 @@ class QRCode:
     param optimize: データを複数のチャンクに分割し、少なくともこの長さの圧縮モードを見つけることでQRサイズを最適化します。0`` に設定すると、最適化を一切行いません。
     
     """
-    
+
     if isinstance(data, util.QRData):
       self.data_list.append(data)
     else:
@@ -78,6 +84,7 @@ class QRCode:
     best fit for the data to avoid data overflow errors.
     :param fit：もし ``True`` ならば（あるいはサイズが指定されていないならば）、データのオーバーフローエラーを回避するために、データに対する最適なフィットを見つけます。
     """
+    #print('in make')
     if fit or (self.version is None):
       self.best_fit(start=self.version)
     self.makeImpl(False, self.best_mask_pattern())
@@ -251,10 +258,11 @@ class QRCode:
 
   def make_image(self, image_factory=None, **kwargs):
     """
-        Make an image from the QR Code data.
+    Make an image from the QR Code data.
 
-        If the data has not been compiled yet, make it first.
-        """
+    If the data has not been compiled yet, make it first.
+    QRコードデータから画像を作成する。まだデータがまとまっていない場合は、先に作っておく。
+    """
     if self.data_cache is None:
       self.make()
 
