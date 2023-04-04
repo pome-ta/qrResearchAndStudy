@@ -38,6 +38,7 @@ ALPHA_NUM = six.b('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:')
 RE_ALPHA_NUM = re.compile(six.b('^[') + re.escape(ALPHA_NUM) + six.b(']*\Z'))
 
 # The number of bits for numeric delimited data lengths.
+# 数値で区切られたデータ長に対するビット数。
 NUMBER_LENGTH = {3: 10, 2: 7, 1: 4}
 
 PATTERN_POSITION_TABLE = [
