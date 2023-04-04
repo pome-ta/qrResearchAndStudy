@@ -308,27 +308,42 @@ def optimal_data_chunks(data, minimum=4):
   :param minimum：チャンクとして分割する行の最小バイト数。
   """
   data = to_bytestring(data)
+  print(f'optimal_data_chunks data: {data}\n')
   re_repeat = (
     six.b('{') + six.text_type(minimum).encode('ascii') + six.b(',}'))
+  print(f'optimal_data_chunks re_repeat: {re_repeat}\n')
+
   num_pattern = re.compile(six.b('\d') + re_repeat)
+  print(f'optimal_data_chunks num_pattern: {num_pattern}\n')
+
   num_bits = _optimal_split(data, num_pattern)
+  print(f'optimal_data_chunks num_bits: {num_bits}\n')
   alpha_pattern = re.compile(
     six.b('[') + re.escape(ALPHA_NUM) + six.b(']') + re_repeat)
   for is_num, chunk in num_bits:
+    print(f'is_num: {is_num}\n')  # False
     if is_num:
       yield QRData(chunk, mode=MODE_NUMBER, check_data=False)
     else:
       for is_alpha, sub_chunk in _optimal_split(chunk, alpha_pattern):
+        # `is_alpha` -> False
+        # `sub_chunk` -> data
         if is_alpha:
           mode = MODE_ALPHA_NUM
         else:
-          mode = MODE_8BIT_BYTE
+          mode = MODE_8BIT_BYTE  # `4` = 1 << 2
         yield QRData(sub_chunk, mode=mode, check_data=False)
 
 
 def _optimal_split(data, pattern):
+  print('_optimal_split')
+  print(f'data: {data}\n')
+  print(f'pattern: {pattern}\n')
   while data:
-    match = re.search(pattern, data)
+    print(f'while.data: {data}\n')
+    match = re.search(pattern, data)  # None
+    print(f'while.match: {match}\n')
+
     if not match:
       break
     start, end = match.start(), match.end()
