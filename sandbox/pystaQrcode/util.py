@@ -5,7 +5,8 @@ import math
 import six
 from six.moves import xrange
 
-from qrcode import base, exceptions
+#from qrcode import base, exceptions
+from pystaQrcode import base, exceptions
 
 # QR encoding modes.
 MODE_NUMBER = 1 << 0
@@ -79,7 +80,7 @@ PATTERN_POSITION_TABLE = [
     [6, 28, 54, 80, 106, 132, 158],
     [6, 32, 58, 84, 110, 136, 162],
     [6, 26, 54, 82, 110, 138, 166],
-    [6, 30, 58, 86, 114, 142, 170]
+    [6, 30, 58, 86, 114, 142, 170],
 ]
 
 G15 = (
@@ -94,6 +95,7 @@ PAD0 = 0xEC
 PAD1 = 0x11
 
 # Precompute bit count limits, indexed by error correction level and code size
+# エラー訂正レベルとコードサイズによってインデックスされた、ビット数の制限を事前に計算する。
 _data_count = lambda block: block.data_count
 BIT_LIMIT_TABLE = [
     [0] + [8*sum(map(_data_count, base.rs_blocks(version, error_correction)))

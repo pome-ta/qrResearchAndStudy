@@ -4,6 +4,15 @@
 
 無駄にインデントを2 に変えていく
 
+`from hoge import piyo` を`pystaQrcode` で書き替えていく
+
+## `make` と素直に
+
+```python
+data = 'https://github.com/pome-ta'
+qr = pystaQrcode.make(data)
+```
+
 
 ### `maim.py` を読む
 

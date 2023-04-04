@@ -1,5 +1,6 @@
 #LyX
-from qrcode import constants
+#from qrcode import constants
+from pystaQrcode import constants
 
 EXP_TABLE = list(range(256))
 

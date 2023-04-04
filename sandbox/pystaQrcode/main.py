@@ -1,6 +1,9 @@
 #LyX
-from qrcode import constants, exceptions, util
-from qrcode.image.base import BaseImage
+#from qrcode import constants, exceptions, util
+#from qrcode.image.base import BaseImage
+
+from pystaQrcode import constants, exceptions, util
+from pystaQrcode.image.base import BaseImage
 
 import six
 from bisect import bisect_left
@@ -24,7 +27,7 @@ class QRCode:
                box_size=10,
                border=4,
                image_factory=None):
-    self.version = version and int(version)
+    self.version = version and int(version)  # None
     self.error_correction = int(error_correction)
     self.box_size = int(box_size)
     # Spec says border should be at least four boxes wide, but allow for
