@@ -19,6 +19,14 @@ qr = pystaQrcode.make(data)
 [qrResearchAndStudy/main.py at main · pome-ta/qrResearchAndStudy · GitHub](https://github.com/pome-ta/qrResearchAndStudy/blob/main/sandbox/pystaQrcode/main.py)
 
 
+#### `six` modules
+
+
+2系 * 3系で、6なんか
+
+`xrange` って書き換えちゃってええんかな？
+
+
 
 
 # 📝 2023/04/03
