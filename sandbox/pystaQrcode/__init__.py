@@ -9,11 +9,11 @@ from qrcode import image  # noqa
 
 def run_example(data="http://www.lincolnloop.com", *args, **kwargs):
   """
-    Build an example QR Code and display it.
+  Build an example QR Code and display it.
 
-    There's an even easier way than the code here though: just use the ``make``
-    shortcut.
-    """
+  There's an even easier way than the code here though: just use the ``make``
+  shortcut.
+  """
   qr = QRCode(*args, **kwargs)
   qr.add_data(data)
 

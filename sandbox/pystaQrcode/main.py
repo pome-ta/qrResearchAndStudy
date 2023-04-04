@@ -39,8 +39,8 @@ class QRCode:
 
   def clear(self):
     """
-        Reset the internal data.
-        """
+    Reset the internal data.
+    """
     self.modules = None
     self.modules_count = 0
     self.data_cache = None
@@ -48,12 +48,15 @@ class QRCode:
 
   def add_data(self, data, optimize=20):
     """
-        Add data to this QR Code.
+    Add data to this QR Code.
 
-        :param optimize: Data will be split into multiple chunks to optimize
-            the QR size by finding to more compressed modes of at least this
-            length. Set to ``0`` to avoid optimizing at all.
-        """
+    :param optimize: Data will be split into multiple chunks to optimize
+        the QR size by finding to more compressed modes of at least this
+        length. Set to ``0`` to avoid optimizing at all.
+    param optimize: データを複数のチャンクに分割し、少なくともこの長さの圧縮モードを見つけることでQRサイズを最適化します。0`` に設定すると、最適化を一切行いません。
+    
+    """
+    
     if isinstance(data, util.QRData):
       self.data_list.append(data)
     else:
