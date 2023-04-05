@@ -17,7 +17,7 @@ def make(data=None, **kwargs):
 
 
 def _check_version(version):
-  print('main._check_version')
+  #print('main._check_version')
   if version < 1 or version > 40:
     raise ValueError("Invalid version (was %s, expected 1 to 40)" % version)
 
@@ -76,6 +76,7 @@ class QRCode:
     self.data_cache = None
 
   def make(self, fit=True):
+    print('main.QRCode.make')
     """
     Compile the data into a QR Code array.
     データをQRコードの配列にまとめる。
@@ -84,7 +85,7 @@ class QRCode:
     best fit for the data to avoid data overflow errors.
     :param fit：もし ``True`` ならば（あるいはサイズが指定されていないならば）、データのオーバーフローエラーを回避するために、データに対する最適なフィットを見つけます。
     """
-    print('main.QRCode.make')
+    
     if fit or (self.version is None):
       self.best_fit(start=self.version)
     self.makeImpl(False, self.best_mask_pattern())
@@ -92,8 +93,9 @@ class QRCode:
   def makeImpl(self, test, mask_pattern):
     print('main.QRCode.makeImpl')
     _check_version(self.version)
-    self.modules_count = self.version * 4 + 17
+    self.modules_count = self.version * 4 + 17  # 25
     self.modules = [None] * self.modules_count
+    #print(f'    self.modules_count:{self.modules_count}')
 
     for row in range(self.modules_count):
 
@@ -120,12 +122,10 @@ class QRCode:
   def setup_position_probe_pattern(self, row, col):
     print('main.QRCode.setup_position_probe_pattern')
     for r in range(-1, 8):
-
       if row + r <= -1 or self.modules_count <= row + r:
         continue
 
       for c in range(-1, 8):
-
         if col + c <= -1 or self.modules_count <= col + c:
           continue
 
@@ -281,12 +281,18 @@ class QRCode:
         from qrcode.image.pil import PilImage
         image_factory = PilImage
 
+    print(f'self.border: {self.border}')
+    print(f'self.modules_count: {self.modules_count}')
+    print(f'self.box_size: {self.box_size}\n')
+    #print(f'self.modules: {self.modules}')
     im = image_factory(self.border, self.modules_count, self.box_size,
                        **kwargs)
     for r in range(self.modules_count):
       for c in range(self.modules_count):
         if self.modules[r][c]:
           im.drawrect(r, c)
+    
+    im._modules_check = self.modules
     return im
 
   def setup_timing_pattern(self):
