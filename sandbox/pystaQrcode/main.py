@@ -84,12 +84,13 @@ class QRCode:
     best fit for the data to avoid data overflow errors.
     :param fit：もし ``True`` ならば（あるいはサイズが指定されていないならば）、データのオーバーフローエラーを回避するために、データに対する最適なフィットを見つけます。
     """
-    #print('in make')
+    print('main.QRCode.make')
     if fit or (self.version is None):
       self.best_fit(start=self.version)
     self.makeImpl(False, self.best_mask_pattern())
 
   def makeImpl(self, test, mask_pattern):
+    print('main.QRCode.makeImpl')
     _check_version(self.version)
     self.modules_count = self.version * 4 + 17
     self.modules = [None] * self.modules_count
@@ -117,6 +118,7 @@ class QRCode:
     self.map_data(self.data_cache, mask_pattern)
 
   def setup_position_probe_pattern(self, row, col):
+    print('main.QRCode.setup_position_probe_pattern')
     for r in range(-1, 8):
 
       if row + r <= -1 or self.modules_count <= row + r:
@@ -135,6 +137,7 @@ class QRCode:
           self.modules[row + r][col + c] = False
 
   def best_fit(self, start=None):
+    print('main.QRCode.best_fit')
     """
         Find the minimum size required to fit in the data.
         """
@@ -144,6 +147,7 @@ class QRCode:
 
     # Corresponds to the code in util.create_data, except we don't yet know
     # version, so optimistically assume start and check later
+    # util.create_dataのコードに対応します。ただし、バージョンがまだわからないので、楽観的に開始し、後で確認することにします。
     mode_sizes = util.mode_sizes_for_version(start)
     buffer = util.BitBuffer()
     for data in self.data_list:
@@ -164,6 +168,7 @@ class QRCode:
     return self.version
 
   def best_mask_pattern(self):
+    print('main.QRCode.best_mask_pattern')
     """
         Find the most efficient mask pattern.
         """
@@ -257,6 +262,7 @@ class QRCode:
     out.flush()
 
   def make_image(self, image_factory=None, **kwargs):
+    print('main.QRCode.make_image')
     """
     Make an image from the QR Code data.
 
