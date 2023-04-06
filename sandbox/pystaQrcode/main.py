@@ -269,7 +269,8 @@ class QRCode:
     If the data has not been compiled yet, make it first.
     QRコードデータから画像を作成する。まだデータがまとまっていない場合は、先に作っておく。
     """
-    if self.data_cache is None:
+    #print(f'self.data_cache: {self.data_cache}\n')
+    if self.data_cache is None:  # None
       self.make()
 
     if image_factory is not None:
