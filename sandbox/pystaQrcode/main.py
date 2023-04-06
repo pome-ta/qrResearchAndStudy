@@ -85,7 +85,7 @@ class QRCode:
     best fit for the data to avoid data overflow errors.
     :param fit：もし ``True`` ならば（あるいはサイズが指定されていないならば）、データのオーバーフローエラーを回避するために、データに対する最適なフィットを見つけます。
     """
-    
+
     if fit or (self.version is None):
       self.best_fit(start=self.version)
     self.makeImpl(False, self.best_mask_pattern())
@@ -291,7 +291,7 @@ class QRCode:
       for c in range(self.modules_count):
         if self.modules[r][c]:
           im.drawrect(r, c)
-    
+
     im._modules_check = self.modules
     return im
 
