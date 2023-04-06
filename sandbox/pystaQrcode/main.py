@@ -85,8 +85,8 @@ class QRCode:
     best fit for the data to avoid data overflow errors.
     :param fit：もし ``True`` ならば（あるいはサイズが指定されていないならば）、データのオーバーフローエラーを回避するために、データに対する最適なフィットを見つけます。
     """
-
-    if fit or (self.version is None):
+    
+    if fit or (self.version is None):  # True None
       self.best_fit(start=self.version)
     self.makeImpl(False, self.best_mask_pattern())
 
@@ -139,8 +139,9 @@ class QRCode:
   def best_fit(self, start=None):
     print('main.QRCode.best_fit')
     """
-        Find the minimum size required to fit in the data.
-        """
+    Find the minimum size required to fit in the data.
+    データに収まるように必要な最小サイズを求めます。
+    """
     if start is None:
       start = 1
     _check_version(start)
