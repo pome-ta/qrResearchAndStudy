@@ -186,7 +186,7 @@ class QRCode:
         pattern = i
 
     return pattern
-
+  '''
   def print_tty(self, out=None):
     """
         Output the QR Code only using TTY colors.
@@ -262,6 +262,7 @@ class QRCode:
       out.write('\n')
     out.flush()
 
+  '''
   def make_image(self, image_factory=None, **kwargs):
     print('main.QRCode.make_image')
     """
