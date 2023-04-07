@@ -298,6 +298,7 @@ class QRCode:
     return im
 
   def setup_timing_pattern(self):
+    print('main.QRCode.setup_timing_pattern')
     for r in range(8, self.modules_count - 8):
       if self.modules[r][6] is not None:
         continue
@@ -309,6 +310,7 @@ class QRCode:
       self.modules[6][c] = (c % 2 == 0)
 
   def sutup_position_adjust_pattern(self):
+    print('main.QRCode.sutup_position_adjust_pattern')
     pos = util.pattern_position(self.version)
 
     for i in range(len(pos)):
@@ -331,6 +333,7 @@ class QRCode:
               self.modules[row + r][col + c] = False
 
   def setup_type_number(self, test):
+    print('main.QRCode.setup_type_number')
     bits = util.BCH_type_number(self.version)
 
     for i in range(18):
@@ -342,6 +345,7 @@ class QRCode:
       self.modules[i % 3 + self.modules_count - 8 - 3][i // 3] = mod
 
   def setup_type_info(self, test, mask_pattern):
+    print('main.QRCode.setup_type_info')
     data = (self.error_correction << 3) | mask_pattern
     bits = util.BCH_type_info(data)
 
@@ -373,6 +377,7 @@ class QRCode:
     self.modules[self.modules_count - 8][8] = (not test)
 
   def map_data(self, data, mask_pattern):
+    print('main.QRCode.map_data')
     inc = -1
     row = self.modules_count - 1
     bitIndex = 7
@@ -418,6 +423,7 @@ class QRCode:
           break
 
   def get_matrix(self):
+    print('main.QRCode.get_matrix')
     """
         Return the QR Code as a multidimensonal array, including the border.
 
