@@ -149,8 +149,17 @@ class QRCode:
     # Corresponds to the code in util.create_data, except we don't yet know
     # version, so optimistically assume start and check later
     # util.create_dataのコードに対応します。ただし、バージョンがまだわからないので、楽観的に開始し、後で確認することにします。
-    mode_sizes = util.mode_sizes_for_version(start)
+    mode_sizes = util.mode_sizes_for_version(start) # 1
+    '''
+    MODE_SIZE_SMALL = {
+      MODE_NUMBER: 10,
+      MODE_ALPHA_NUM: 9,
+      MODE_8BIT_BYTE: 8,
+      MODE_KANJI: 8,
+    }
+    '''
     buffer = util.BitBuffer()
+    
     for data in self.data_list:
       buffer.put(data.mode, 4)
       buffer.put(len(data), mode_sizes[data.mode])
