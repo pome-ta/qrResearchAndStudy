@@ -1,3 +1,3 @@
-#LyX
+# LyX
 class DataOverflowError(Exception):
-    pass
+  pass

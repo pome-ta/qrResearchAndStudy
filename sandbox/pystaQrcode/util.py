@@ -1,11 +1,11 @@
-#import 'pythonista'
+# import 'pythonista'
 import re
 import math
 
 import six
 from six.moves import xrange
 
-#from qrcode import base, exceptions
+# from qrcode import base, exceptions
 from pystaQrcode import base, exceptions
 
 # QR encoding modes.
@@ -85,7 +85,7 @@ PATTERN_POSITION_TABLE = [
 ]
 
 G15 = (
-  (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0))
+    (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0))
 G18 = ((1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) |
        (1 << 2) | (1 << 0))
 G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1)
@@ -193,8 +193,8 @@ def _lost_point_level1(modules, modules_count):
   row_range_last = (-1, 0)
   row_range_standard = (-1, 0, 1)
 
-  col_range_first = ((0, 1), (1, ))
-  col_range_last = ((-1, 0), (-1, ))
+  col_range_first = ((0, 1), (1,))
+  col_range_last = ((-1, 0), (-1,))
   col_range_standard = ((-1, 0, 1), (-1, 1))
 
   for row in modules_range:
@@ -308,22 +308,22 @@ def optimal_data_chunks(data, minimum=4):
   :param minimum：チャンクとして分割する行の最小バイト数。
   """
   data = to_bytestring(data)
-  #print(f'optimal_data_chunks data: {data}\n')
+  # print(f'optimal_data_chunks data: {data}\n')
   re_repeat = (
-    six.b('{') + six.text_type(minimum).encode('ascii') + six.b(',}'))
-  #print(f'optimal_data_chunks re_repeat: {re_repeat}\n')
+      six.b('{') + six.text_type(minimum).encode('ascii') + six.b(',}'))
+  # print(f'optimal_data_chunks re_repeat: {re_repeat}\n')
 
   num_pattern = re.compile(six.b('\d') + re_repeat)
-  #print(f'optimal_data_chunks num_pattern: {num_pattern}\n')
+  # print(f'optimal_data_chunks num_pattern: {num_pattern}\n')
 
   num_bits = _optimal_split(data, num_pattern)
-  #print(f'optimal_data_chunks num_bits: {num_bits}\n')
+  # print(f'optimal_data_chunks num_bits: {num_bits}\n')
 
   alpha_pattern = re.compile(
     six.b('[') + re.escape(ALPHA_NUM) + six.b(']') + re_repeat)
   for is_num, chunk in num_bits:
-    #print(f'is_num: {is_num}\n')  # False
-    #print(f'chunk: {chunk}\n')  # b data
+    # print(f'is_num: {is_num}\n')  # False
+    # print(f'chunk: {chunk}\n')  # b data
     if is_num:
       yield QRData(chunk, mode=MODE_NUMBER, check_data=False)
     else:
@@ -338,13 +338,13 @@ def optimal_data_chunks(data, minimum=4):
 
 
 def _optimal_split(data, pattern):
-  #print('_optimal_split')
-  #print(f'data: {data}')
-  #print(f'pattern: {pattern}\n')
+  # print('_optimal_split')
+  # print(f'data: {data}')
+  # print(f'pattern: {pattern}\n')
   while data:
-    #print(f'while.data: {data}\n')
+    # print(f'while.data: {data}\n')
     match = re.search(pattern, data)  # None
-    #print(f'while.match: {match}\n')
+    # print(f'while.match: {match}\n')
 
     if not match:
       break
@@ -530,7 +530,6 @@ def create_bytes(buffer, rs_blocks):
 
 
 def create_data(version, error_correction, data_list):
-
   buffer = BitBuffer()
   for data in data_list:
     buffer.put(data.mode, 4)
@@ -567,4 +566,3 @@ def create_data(version, error_correction, data_list):
       buffer.put(PAD1, 8)
 
   return create_bytes(buffer, rs_blocks)
-

@@ -1,6 +1,6 @@
-#LyX
-#from qrcode import constants, exceptions, util
-#from qrcode.image.base import BaseImage
+# LyX
+# from qrcode import constants, exceptions, util
+# from qrcode.image.base import BaseImage
 
 from pystaQrcode import constants, exceptions, util
 from pystaQrcode.image.base import BaseImage
@@ -17,7 +17,7 @@ def make(data=None, **kwargs):
 
 
 def _check_version(version):
-  #print('main._check_version')
+  # print('main._check_version')
   if version < 1 or version > 40:
     raise ValueError("Invalid version (was %s, expected 1 to 40)" % version)
 
@@ -85,7 +85,7 @@ class QRCode:
     best fit for the data to avoid data overflow errors.
     :param fit：もし ``True`` ならば（あるいはサイズが指定されていないならば）、データのオーバーフローエラーを回避するために、データに対する最適なフィットを見つけます。
     """
-    
+
     if fit or (self.version is None):  # True None
       self.best_fit(start=self.version)
     self.makeImpl(False, self.best_mask_pattern())
@@ -95,7 +95,7 @@ class QRCode:
     _check_version(self.version)
     self.modules_count = self.version * 4 + 17  # 25
     self.modules = [None] * self.modules_count
-    #print(f'    self.modules_count:{self.modules_count}')
+    # print(f'    self.modules_count:{self.modules_count}')
 
     for row in range(self.modules_count):
 
@@ -149,7 +149,7 @@ class QRCode:
     # Corresponds to the code in util.create_data, except we don't yet know
     # version, so optimistically assume start and check later
     # util.create_dataのコードに対応します。ただし、バージョンがまだわからないので、楽観的に開始し、後で確認することにします。
-    mode_sizes = util.mode_sizes_for_version(start) # 1
+    mode_sizes = util.mode_sizes_for_version(start)  # 1
     '''
     MODE_SIZE_SMALL = {
       MODE_NUMBER: 10,
@@ -159,7 +159,7 @@ class QRCode:
     }
     '''
     buffer = util.BitBuffer()
-    
+
     for data in self.data_list:
       buffer.put(data.mode, 4)
       buffer.put(len(data), mode_sizes[data.mode])
@@ -195,6 +195,7 @@ class QRCode:
         pattern = i
 
     return pattern
+
   '''
   def print_tty(self, out=None):
     """
@@ -272,6 +273,7 @@ class QRCode:
     out.flush()
 
   '''
+
   def make_image(self, image_factory=None, **kwargs):
     print('main.QRCode.make_image')
     """
@@ -280,7 +282,7 @@ class QRCode:
     If the data has not been compiled yet, make it first.
     QRコードデータから画像を作成する。まだデータがまとまっていない場合は、先に作っておく。
     """
-    #print(f'self.data_cache: {self.data_cache}\n')
+    # print(f'self.data_cache: {self.data_cache}\n')
     if self.data_cache is None:  # None
       self.make()
 
@@ -296,7 +298,7 @@ class QRCode:
     print(f'self.border: {self.border}')
     print(f'self.modules_count: {self.modules_count}')
     print(f'self.box_size: {self.box_size}\n')
-    #print(f'self.modules: {self.modules}')
+    # print(f'self.modules: {self.modules}')
     im = image_factory(self.border, self.modules_count, self.box_size,
                        **kwargs)
     for r in range(self.modules_count):
@@ -453,4 +455,3 @@ class QRCode:
     code += [[False] * width] * self.border
 
     return code
-

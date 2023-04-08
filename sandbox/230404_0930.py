@@ -5,4 +5,3 @@ _ = 1
 qr = pystaQrcode.make(data)
 
 _ = 1
-

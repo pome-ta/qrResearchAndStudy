@@ -1,4 +1,4 @@
-#import 'pythonista'
+# import 'pythonista'
 # QR error correct levels
 ERROR_CORRECT_L = 1
 ERROR_CORRECT_M = 0

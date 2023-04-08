@@ -1,4 +1,4 @@
-#import 'pythonista'
+# import 'pythonista'
 '''
 from qrcode.main import QRCode
 from qrcode.main import make  # noqa
@@ -31,5 +31,5 @@ def run_example(data="http://www.lincolnloop.com", *args, **kwargs):
 
 if __name__ == '__main__':  # pragma: no cover
   import sys
-  run_example(*sys.argv[1:])
 
+  run_example(*sys.argv[1:])
