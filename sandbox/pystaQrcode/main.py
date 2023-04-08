@@ -166,8 +166,10 @@ class QRCode:
       data.write(buffer)
 
     needed_bits = len(buffer)
+    
     self.version = bisect_left(util.BIT_LIMIT_TABLE[self.error_correction],
-                               needed_bits, start)
+                               needed_bits, start)  # 2
+    
     if self.version == 41:
       raise exceptions.DataOverflowError()
 
