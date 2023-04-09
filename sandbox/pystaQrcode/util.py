@@ -85,7 +85,7 @@ PATTERN_POSITION_TABLE = [
 ]
 
 G15 = (
-    (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0))
+  (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0))
 G18 = ((1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) |
        (1 << 2) | (1 << 0))
 G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1)
@@ -193,8 +193,8 @@ def _lost_point_level1(modules, modules_count):
   row_range_last = (-1, 0)
   row_range_standard = (-1, 0, 1)
 
-  col_range_first = ((0, 1), (1,))
-  col_range_last = ((-1, 0), (-1,))
+  col_range_first = ((0, 1), (1, ))
+  col_range_last = ((-1, 0), (-1, ))
   col_range_standard = ((-1, 0, 1), (-1, 1))
 
   for row in modules_range:
@@ -310,7 +310,7 @@ def optimal_data_chunks(data, minimum=4):
   data = to_bytestring(data)
   # print(f'optimal_data_chunks data: {data}\n')
   re_repeat = (
-      six.b('{') + six.text_type(minimum).encode('ascii') + six.b(',}'))
+    six.b('{') + six.text_type(minimum).encode('ascii') + six.b(',}'))
   # print(f'optimal_data_chunks re_repeat: {re_repeat}\n')
 
   num_pattern = re.compile(six.b('\d') + re_repeat)
@@ -566,3 +566,4 @@ def create_data(version, error_correction, data_list):
       buffer.put(PAD1, 8)
 
   return create_bytes(buffer, rs_blocks)
+
