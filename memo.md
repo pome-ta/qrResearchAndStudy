@@ -13,43 +13,31 @@ data = 'https://github.com/pome-ta'
 qr = pystaQrcode.make(data)
 ```
 
-
 ### `maim.py` を読む
 
 [qrResearchAndStudy/main.py at main · pome-ta/qrResearchAndStudy · GitHub](https://github.com/pome-ta/qrResearchAndStudy/blob/main/sandbox/pystaQrcode/main.py)
 
-
 #### `six` modules
-
 
 2系 * 3系で、6なんか
 
 `xrange` って書き換えちゃってええんかな？
 
-
-
-
 # 📝 2023/04/03
 
-[/qrcode](https://github.com/pome-ta/qrResearchAndStudy/tree/main/qrcode) 
+[/qrcode](https://github.com/pome-ta/qrResearchAndStudy/tree/main/qrcode)
 
 ↓
 
 [/sandbox/pystaQrcode](https://github.com/pome-ta/qrResearchAndStudy/tree/main/sandbox/pystaQrcode) rename
 
-
 Pythonista3 よりコピー
-
 
 [lincolnloop/python-qrcode: Python QR Code image generator](https://github.com/lincolnloop/python-qrcode)
 
-
 [qrcode · PyPI](https://pypi.org/project/qrcode/)
 
-
 これのPythonista3 調整版みたい
-
-
 
 # 📝 2023/04/01
 
@@ -57,6 +45,4 @@ Pythonista3 よりコピー
 
 > 「QRコード」は㈱デンソーウェーブの登録商標です。
 
-
 これでええんか？
-
