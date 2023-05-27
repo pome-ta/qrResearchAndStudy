@@ -1,3 +1,10 @@
+# 📝 2023/05/27
+
+久々に開いたら意味わからんだったので、ほぼ記憶リセットやな
+
+[QRコードを生成できるだけでなく「作り方」まで理解できる「Creating a QR Code step by step」 - GIGAZINE](https://gigazine.net/news/20200815-creating-qr-code-step-by-step/)
+
+
 # 📝 2023/04/04
 
 ## `qrcode` -> `pystaQrcode` を読んでいく
