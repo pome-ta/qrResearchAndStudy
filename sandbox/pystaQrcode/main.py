@@ -23,6 +23,7 @@ def _check_version(version):
 
 
 class QRCode:
+
   def __init__(self,
                version=None,
                error_correction=constants.ERROR_CORRECT_M,
@@ -129,9 +130,9 @@ class QRCode:
         if col + c <= -1 or self.modules_count <= col + c:
           continue
 
-        if (0 <= r and r <= 6 and (c == 0 or c == 6) or (0 <= c and c <= 6 and
-                                                         (r == 0 or r == 6)) or
-            (2 <= r and r <= 4 and 2 <= c and c <= 4)):
+        if (0 <= r and r <= 6 and (c == 0 or c == 6)
+            or (0 <= c and c <= 6 and (r == 0 or r == 6))
+            or (2 <= r and r <= 4 and 2 <= c and c <= 4)):
           self.modules[row + r][col + c] = True
         else:
           self.modules[row + r][col + c] = False
